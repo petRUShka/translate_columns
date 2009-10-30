@@ -22,6 +22,9 @@ really unlucky), and can be simply added. Indeed, the plugin was written to be
 added to an existing application.
 
 == Updates
+=== 30th October 2009
+
+- Added translation generator (models and migrations)
 
 === 24th September 2009
 
@@ -140,8 +143,18 @@ plugin modify the model so that it looks like the following:
    translate_columns :title, :sub_title, :body
  end
 
-I'm working on getting it so that you don't need to specify the columns
-manually, but it is not yet ready.
+Also you can set only 
+
+ class Document < ActiveRecord::Base
+   translate_columns :title, :sub_title, :body
+ end
+
+...for some models. And use generator
+ 
+ script/generate translation
+
+It creates necessary migrations and models for models with option translate_columns.
+Also it set has_many associaton with model and translate model.
 
 In earlier versions you'd need to mess around with a Locale class but thanks to
 the Rails I18n extension, this is no longer necessary.
